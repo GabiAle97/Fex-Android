@@ -45,6 +45,13 @@ function termux_install
     echo -e "\e[32m[+] 2) FEX-EMU armv8.2 \e[0m"
     echo -e "\e[32m[+] 3) FEX-EMU armv8.4 \e[0m"
     read fex_version
+    while [[ "$fex_version" != "1" ]] && [[ "$fex_version" != "2" ]] && [[ "$fex_version" != "3" ]]; do
+        echo -e "\e[32m[+] Invalid option. Try again: \e[0m"
+        echo -e "\e[32m[+] 1) FEX-EMU armv8.0 \e[0m"
+        echo -e "\e[32m[+] 2) FEX-EMU armv8.2 \e[0m"
+        echo -e "\e[32m[+] 3) FEX-EMU armv8.4 \e[0m"
+        read fex_version
+    done
     wget $(sed -n "$fex_version{p;q}" urls) -O patch/update.deb
     echo -e "\e[32m[+] Downloading update patch...\e[0m"
     wget https://raw.githubusercontent.com/AllPlatform/Fex-Android/main/patch/ThunksDB.json -O patch/ThunksDB.json
