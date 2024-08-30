@@ -1,0 +1,15 @@
+DRI3=Enabled
+GL=Disabled
+VK=Enabled
+FEX=Disabled
+DBG=Disabled
+WINE="0"
+ESYNC=Disabled
+SCR="1280x720"
+src1=off
+src2=off
+src3=off
+src4=on
+src5=off
+src6=off
+ver="1.4-update"
