@@ -232,7 +232,7 @@ function resetprefix()
 
 function wine_ver()
 {
-    _winever=$(dialog --menu "Select Wine version" 20 45 25 1 "wine-9.17-amd64 (Stable, Recommend)" 2 "wine-9.2-staging-tkg-amd64 (Unstable, Staging)" 3 "lutris-GE-Proton8-15-x86_64 (Unstable, Staging)" 2>&1 >/dev/tty)
+    _winever=$(dialog --menu "Select Wine version" 20 45 25 1 "wine-9.17-amd64 (Stable, Recommend)" 2 "wine-9.17-staging-amd64 (Unstable, Staging)" 3 "wine-9.17-staging-tkg-amd64 (Unstable, Staging)" 4 "wine-9.17-amd64-wow64 (EXPERIMENTAL)" 2>&1 >/dev/tty)
     if [[ $? == 1 ]]; then
         wine;
     fi
@@ -262,49 +262,72 @@ function wine_ver()
 	fi
 	;;
     2)
-	if [ -d ubuntu-fs64/opt/wine/wine-9.2-staging-tkg-amd64 ]; then
-            WINE=wine-9.2-staging-tkg-amd64
+	if [ -d ubuntu-fs64/opt/wine/wine-9.17-staging-amd64 ]; then
+            WINE=wine-9.17-staging-amd64
             write_env
             resetprefix
             main_menu;
 	else
-            dialog --yesno "Do you want download wine-9.2-staging-tkg-amd64 from Kron4ek/Wine-Builds" 10 40
+            dialog --yesno "Do you want download wine-9.17-staging-amd64 from Kron4ek/Wine-Builds" 10 40
             if [[ $? == 1 ]]; then
                 wine_ver;
             fi
             clear
-	        mkdir -p ubuntu-fs64/opt/wine/wine-9.2-staging-tkg-amd64
-            wget https://github.com/Kron4ek/Wine-Builds/releases/download/9.2/wine-9.2-staging-tkg-amd64.tar.xz -O wine-9.2-staging-tkg-amd64.tar.xz
-            WINE=wine-9.2-staging-tkg-amd64
+	        mkdir -p ubuntu-fs64/opt/wine/wine-9.17-staging-amd64
+            wget https://github.com/Kron4ek/Wine-Builds/releases/download/9.17/wine-9.17-staging-amd64.tar.xz -O wine-9.17-staging-amd64.tar.xz
+            WINE=wine-9.17-staging-amd64
             echo -e "\e[32m[+] Completed Download $WINE ...\e[0m"
             echo -e "\e[32m[+] Extracting Wine $WINE\e[0m"
-            tar -xf wine-9.2-staging-tkg-amd64.tar.xz -C ubuntu-fs64/opt/wine
-            rm wine-9.2-staging-tkg-amd64.tar.xz
+            tar -xf wine-9.17-staging-amd64.tar.xz -C ubuntu-fs64/opt/wine
+            rm wine-9.17-staging-amd64.tar.xz
             write_env
             resetprefix
             main_menu;
 	fi
 	;;
     3)
-	if [ -d ubuntu-fs64/opt/wine/lutris-GE-Proton8-15-x86_64 ]; then
-            WINE=lutris-GE-Proton8-15-x86_64
+	if [ -d ubuntu-fs64/opt/wine/wine-9.17-staging-tkg-amd64 ]; then
+            WINE=wine-9.17-staging-tkg-amd64
             write_env
             resetprefix
             main_menu;
         else
-            dialog --yesno "Do you want download lutris-GE-Proton8-15-x86_64 from GloriousEggroll/wine-ge-custom" 10 40
+            dialog --yesno "Do you want download wine-9.17-staging-tkg-amd64 from GloriousEggroll/wine-ge-custom" 10 40
             if [[ $? == 1 ]]; then
                 wine_ver;
 	    fi
-            clear
-	    mkdir -p ubuntu-fs64/opt/wine/lutris-GE-Proton8-15-x86_64
-            wget https://github.com/GloriousEggroll/wine-ge-custom/releases/download/GE-Proton8-15/wine-lutris-GE-Proton8-15-x86_64.tar.xz -O wine-lutris-GE-Proton8-15-x86_64.tar.xz
-	    wget https://github.com/AllPlatform/Fex-Android/releases/download/v1.3-update/prefix-wine-lutris-GE-Proton8-15-x86_64.tar.xz -O ubuntu-fs64/opt/wine/lutris-GE-Proton8-15-x86_64/wine.tar.xz
-	    WINE=lutris-GE-Proton8-15-x86_64
+        clear
+	    mkdir -p ubuntu-fs64/opt/wine/wine-9.17-staging-tkg-amd64
+        wget https://github.com/Kron4ek/Wine-Builds/releases/download/9.17/wine-9.17-staging-tkg-amd64.tar.xz -O wine-wine-9.17-staging-tkg-amd64.tar.xz
+	    WINE=wine-9.17-staging-tkg-amd64
 	    echo -e "\e[32m[+] Completed Download $WINE ...\e[0m"
+        echo -e "\e[32m[+] Extracting Wine $WINE\e[0m"
+	    tar -xf wine-wine-9.17-staging-tkg-amd64.tar.xz -C ubuntu-fs64/opt/wine
+	    rm wine-wine-9.17-staging-tkg-amd64.tar.xz
+        write_env
+        resetprefix
+        main_menu;
+	fi
+	;;
+    4)
+	if [ -d ubuntu-fs64/opt/wine/wine-9.17-amd64-wow64 ]; then
+            WINE=wine-9.17-amd64-wow64
+            write_env
+            resetprefix
+            main_menu;
+	else
+            dialog --yesno "Do you want download wine-9.17-amd64-wow64 from Kron4ek/Wine-Builds" 10 40
+            if [[ $? == 1 ]]; then
+                wine_ver;
+            fi
+            clear
+	        mkdir -p ubuntu-fs64/opt/wine/wine-9.17-amd64-wow64
+            wget https://github.com/Kron4ek/Wine-Builds/releases/download/9.17/wine-9.17-amd64-wow64.tar.xz -O wine-9.17-amd64-wow64.tar.xz
+            WINE=wine-9.17-amd64-wow64
+            echo -e "\e[32m[+] Completed Download $WINE ...\e[0m"
             echo -e "\e[32m[+] Extracting Wine $WINE\e[0m"
-	    tar -xf wine-lutris-GE-Proton8-15-x86_64.tar.xz -C ubuntu-fs64/opt/wine
-	    rm wine-lutris-GE-Proton8-15-x86_64.tar.xz
+            tar -xf wine-9.17-amd64-wow64.tar.xz -C ubuntu-fs64/opt/wine
+            rm wine-9.17-amd64-wow64.tar.xz
             write_env
             resetprefix
             main_menu;
