@@ -36,6 +36,10 @@ cmd+=" -b ubuntu-fs64/root:/dev/shm"
 cmd+=" -b /data/data/com.termux/files/usr/tmp:/tmp"
 cmd+=" -b /sdcard"
 cmd+=" -w /root"
+if [ ! $winebootcmd == "" ]; then
+    cmd+=" /bin/FEXInterpreter"
+    cmd+=" $winebootcmd;"
+fi
 cmd+=" /bin/FEXInterpreter"
 cmd+=" $cmdstart"
 $cmd

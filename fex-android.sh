@@ -9,9 +9,9 @@ function check_storage
 
 function obtain_fex-emu_urls
 {
-    curl -s https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.0/ | grep -oP '(?<=href=")[^"]*' | grep -P '\.deb$' | awk '{print "https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.0/"$0}' | grep "~j" | grep -v "libfex" | grep -v "binfmt" > urls
-    curl -s https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.2/ | grep -oP '(?<=href=")[^"]*' | grep -P '\.deb$' | awk '{print "https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.2/"$0}' | grep "~j" | grep -v "libfex" | grep -v "binfmt" >> urls
-    curl -s https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.4/ | grep -oP '(?<=href=")[^"]*' | grep -P '\.deb$' | awk '{print "https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.4/"$0}' | grep "~j" | grep -v "libfex" | grep -v "binfmt" >> urls
+    curl -s https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.0/ | grep -oP '(?<=href=")[^"]*' | grep -P '\.deb$' | awk '{print "https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.0/"$0}' | grep "~o" | grep -v "libfex" | grep -v "binfmt" > urls
+    curl -s https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.2/ | grep -oP '(?<=href=")[^"]*' | grep -P '\.deb$' | awk '{print "https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.2/"$0}' | grep "~o" | grep -v "libfex" | grep -v "binfmt" >> urls
+    curl -s https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.4/ | grep -oP '(?<=href=")[^"]*' | grep -P '\.deb$' | awk '{print "https://ppa.launchpadcontent.net/fex-emu/fex/ubuntu/pool/main/f/fex-emu-armv8.4/"$0}' | grep "~o" | grep -v "libfex" | grep -v "binfmt" >> urls
 }
 
 function termux_install
