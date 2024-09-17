@@ -58,16 +58,10 @@ function start_fex()
     if [[ $DRI3 == "Enabled" ]]; then
         export FEX_X87REDUCEDPRECISION=true
         echo "cmdstart='/opt/wine/$WINE/bin/wine64 explorer /desktop=shell,$SCR /opt/tfm.exe'" > start.sh
-        if [[ ! -f /root/.wine ]]; then
-            echo "winebootcmd='/opt/wine/$WINE/bin/wine64 wineboot -u'" >> start.sh
-        fi
     else
         export MESA_VK_WSI_DEBUG=sw
         export FEX_X87REDUCEDPRECISION=true
         echo "cmdstart='/opt/wine/$WINE/bin/wine64 explorer /desktop=shell,$SCR /opt/tfm.exe'" > start.sh
-        if [[ ! -f /root/.wine ]]; then
-            echo "winebootcmd='/opt/wine/$WINE/bin/wine64 wineboot -u'" >> start.sh
-        fi
     fi
     _killall
     if [[ $DBG == "Enabled" ]]; then
@@ -226,6 +220,10 @@ function wine_csrc()
 function resetprefix()
 {
     rm -rf ubuntu-fs64/root/.wine | dialog --infobox "removing files..." 10 50
+    clear
+	echo -e "\e[32m[+] Creating Wine Prefix\e[0m"
+    echo "cmdstart='/opt/wine/$WINE/bin/wine64 wineboot -u'" >> start.sh
+	./start-proot.sh
     dialog --title "Fex-Android $ver" --msgbox "$WINE has been set for Fex-Emu" 10 50
     main_menu
 }
